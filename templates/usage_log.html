@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Usage Log</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>📜 Usage Log</h1>
+    <table>
+      <tr><th>Medicine</th><th>Quantity (ml)</th><th>Timestamp</th></tr>
+      {% for log in logs %}
+        <tr>
+          <td>{{ log.medicine }}</td>
+          <td>{{ log.quantity }}</td>
+          <td>{{ log.timestamp }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    <button onclick="location.href='/'">🔙 Back to Home</button>
+  </div>
+</body>
+</html>

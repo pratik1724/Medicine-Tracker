@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Buy List</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🛒 Buy List</h1>
+    <div class="list-container"> {# Changed <ul> to <div> for better flex control #}
+      {% if buy_list %}
+        {% for item in buy_list %}
+          <div class="buy-list-item"> {# Each item is now a div for flexbox layout #}
+            <span class="{{ item.color }}-dot">&#x25CF;</span> {# Dynamic class for dot color #}
+            <span class="{{ item.color }}-text"> {# Dynamic class for text color #}
+              {{ item.medicine | title }} (Remaining: {{ item.remaining }} ml)
+            </span>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>No medicines currently on the buy list.</p>
+      {% endif %}
+    </div> {# End list-container #}
+    <button onclick="location.href='/'" class="button">🔙 Back to Home</button> {# Added class for button #}
+  </div>
+</body>
+</html>

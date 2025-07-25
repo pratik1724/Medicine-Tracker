@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Medicine Tracker - Home</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🩺 Medicine Usage Tracker</h1>
+    <p>🎤 Speak the medicine name and quantity used</p>
+    <p><strong>You said:</strong> <span id="spokenText">...</span></p>
+    <button onclick="startListening()">🎙️ Start Listening</button>
+    <button onclick="submitSpokenText()">✅ Submit</button>
+    <br><br>
+    <button onclick="location.href='/usage_log'">📜 View Usage Log</button>
+    <button onclick="location.href='/restock'">📦 Restock Status</button>
+    <button onclick="location.href='/restock_medicine'">🔄 Restock Medicine</button>
+    <button onclick="location.href='/buy_list'">🛒 Buy List</button>
+    <button onclick="location.href='/forecast'">🔮 Predict Stock Forecast</button>
+  </div>
+
+  <script>
+    let spokenText = '';
+
+    function startListening() {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.onresult = function(event) {
+        spokenText = event.results[0][0].transcript;
+        document.getElementById('spokenText').innerText = spokenText;
+      };
+      recognition.start();
+    }
+
+    function submitSpokenText() {
+      fetch('/log_usage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: spokenText })
+      }).then(response => {
+        if (response.ok) alert("Usage logged!");
+        else alert("Could not understand. Try again.");
+      });
+    }
+  </script>
+</body>
+</html>

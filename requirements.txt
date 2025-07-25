@@ -1,0 +1,6 @@
+Flask
+flask-cors
+pymongo
+prophet
+pandas
+matplotlib

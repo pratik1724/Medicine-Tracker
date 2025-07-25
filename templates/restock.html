@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Restock Status</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>📦 Restock Status</h1>
+    <table>
+      <tr><th>Medicine</th><th>Remaining (ml)</th><th>Predicted Depletion</th></tr>
+      {% for med, data in summary.items() %}
+        <tr>
+          <td>{{ med }}</td>
+          <td>{{ data.remaining }}</td>
+          <td>{{ data.depletion_date if data.depletion_date else 'N/A' }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    <button onclick="location.href='/'">🔙 Back to Home</button>
+  </div>
+</body>
+</html>

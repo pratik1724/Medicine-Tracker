@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stock Forecast</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>📊 Stock Forecast for Medicines</h1>
+
+    <table>
+      <tr><th>Medicine</th><th>Restock In</th></tr>
+      {% for medicine, status in stock_alerts.items() %}
+        <tr>
+          <td><strong>{{ medicine.title() }}</strong></td>
+          <td>{{ status }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+
+    <button onclick="location.href='/'">🔙 Back to Home</button>
+  </div>
+</body>
+</html>
